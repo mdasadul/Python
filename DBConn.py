@@ -6,20 +6,10 @@ db = MySQLdb.connect("localhost","dbuser","dbuser","testDB" )
 cursor = db.cursor()
 
 #fetching data from database
-fetch_data = """ SELECT * FROM EMPLOYEE""";
+update_data = """ update employee set age = 32 where sex = 'm'""";
 
 try:
-    cursor.execute(fetch_data)
-    results = cursor.fetchall();
-    for row in results:
-        fname = row[0];
-        lname = row[1]
-        age = row[2]
-        sex = row[3]
-        income = row[4]
-        print "First Name = %s, Last Name = %s, age =%d, sex = %s, income = %d " % \
-        (fname,lname,age,sex,income)
-    
+    cursor.execute(update_data)
     db.commit();
 except:
     db.rollback();
